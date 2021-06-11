@@ -9,21 +9,16 @@ public class Cadastro extends JPanel  {
 	private static final long serialVersionUID = 7077408557425378389L;
 	
 	private Campos campos = new Campos();
-	private Botoes botoes = new Botoes(this);
 	public Cadastro() {
 		setLayout(new BorderLayout());
 		init();
 	}
 
 	private void init() {
-		add(getCampos(), BorderLayout.CENTER);
-		add(getBotoes(), BorderLayout.SOUTH);
+		add(campos);
 	}
 	public Campos getCampos() {
 		return campos;
 	}
-	public Botoes getBotoes() {
-		return botoes;
-	}
-	
+
 }

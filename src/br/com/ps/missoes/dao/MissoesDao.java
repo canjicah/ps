@@ -8,12 +8,13 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import br.com.ps.missoes.model.Missoes;
+import br.com.ps.missoes.panels.Banco;
 import br.com.ps.missoes.util.JPAUtil;
 
 public class MissoesDao {
 	EntityManagerFactory factory = Persistence.createEntityManagerFactory("ps");
 	EntityManager entityManager = factory.createEntityManager();
-	
+	Banco banco;
 	EntityManager manager = JPAUtil.getManager();
 	
 	
@@ -47,6 +48,5 @@ public class MissoesDao {
 		manager.getTransaction().begin();
 		manager.persist(missoes);
 		manager.getTransaction().commit();
-		
 	}
 }

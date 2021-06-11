@@ -19,14 +19,21 @@ public class App extends JFrame{
 
 	private void init() {
 		JFrame janela = new JFrame("Prova semestral");
+		JFrame janelaBanco = new JFrame("Prova semestral");
 		abas.add("Cadastro",abaCadastro);
 		abas.add("Lista",abaBanco);
 		abas.addChangeListener(acaoMudar -> {
 			abas.setComponentAt(1, new Banco());
 		});
+		janelaBanco.add(abaBanco);
+		janelaBanco.setSize(800, 450);
+		janelaBanco.setLocationRelativeTo(null);
+		janelaBanco.setVisible(true);
+		janelaBanco.setResizable(false);
+		janelaBanco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		janela.add(abas);
-		janela.setSize(800, 350);
+		janela.setSize(550, 450);
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
 		janela.setResizable(false);

@@ -5,12 +5,13 @@ import java.awt.event.ActionListener;
 
 import br.com.ps.missoes.dao.MissoesDao;
 import br.com.ps.missoes.model.Missoes;
+import br.com.ps.missoes.panels.Banco;
 import br.com.ps.missoes.panels.Cadastro;
 
 public class BotaoListener implements ActionListener {
 
 	private Cadastro cadastro;
-	
+	private Banco banco;
 	private MissoesDao dao = new MissoesDao();
 
 	public BotaoListener(Cadastro cadastro) {
@@ -20,7 +21,7 @@ public class BotaoListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Missoes missao = new Missoes();
-		missao.setDataTerra(cadastro.getCampos().getDateTime().getText());
+		missao.setDataTerra(cadastro.getCampos().getData().getText());
 		missao.setDiasMarte(Integer.parseInt(cadastro.getCampos().getDiasMarte().getText()));
 		missao.setLongSolar(Long.parseLong(cadastro.getCampos().getLongSolar().getText()));
 		missao.setMesMarte(Integer.parseInt(cadastro.getCampos().getMesMarte().getText()));
@@ -33,8 +34,10 @@ public class BotaoListener implements ActionListener {
 		if (id != null && !id.trim().equals("")) {
 			missao.setId(Integer.parseInt(id));
 			dao.editar(missao);
+			banco.carregaDados();
 		} else {
 			dao.create(missao);
+			banco.carregaDados();
 		}
 		
 

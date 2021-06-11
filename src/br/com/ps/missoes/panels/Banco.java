@@ -25,6 +25,7 @@ public class Banco extends JPanel  implements ActionListener {
 	private JButton editar = new JButton("editar");
 	private JButton apagar = new JButton("apagar");
 	private JTable tabela = new JTable(modelo);
+	private JButton carregar = new JButton("carregar");
 	public Banco() {
 		setLayout(new BorderLayout());
 		carregaDados();
@@ -38,9 +39,9 @@ public class Banco extends JPanel  implements ActionListener {
 		modelo.addColumn("Dias em Marte");
 		modelo.addColumn("Longitude Solar");
 		modelo.addColumn("Mes Marciano");
-		modelo.addColumn("temperatura Minima");
-		modelo.addColumn("Temperatura Maxima");
-		modelo.addColumn("Pressao Atmosférica");
+		modelo.addColumn("Temp Min");
+		modelo.addColumn("Temp Max");
+		modelo.addColumn("Pressao ATM");
 		modelo.setNumRows(0);
 		MissoesDao dao = new MissoesDao();
 		List<Missoes> lista = dao.buscarTodos();
@@ -65,12 +66,14 @@ public class Banco extends JPanel  implements ActionListener {
 		
 		editar.addActionListener(this);
 		apagar.addActionListener(this);
+		carregar.addActionListener(this);
 		painel.add(apagar);
 		painel.add(editar);
+		painel.add(carregar);
 		add(painel,BorderLayout.SOUTH);
 		}
 
-	private void carregaDados() {
+	public void carregaDados() {
 		modelo.setNumRows(0);
 		MissoesDao dao = new MissoesDao();
 		List<Missoes> lista = dao.buscarTodos();
@@ -108,7 +111,7 @@ public class Banco extends JPanel  implements ActionListener {
 				JTextField campoId = cadastro.getCampos().getId();
 				campoId.setText(id);
 				
-				JTextField campoDataTerra = cadastro.getCampos().getDateTime();
+				JTextField campoDataTerra = cadastro.getCampos().getData();
 				campoDataTerra.setText(dataTerra);
 				
 				JTextField campoDiasMarte = cadastro.getCampos().getDiasMarte();
@@ -152,6 +155,7 @@ public class Banco extends JPanel  implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == editar) editar();		
 		if (e.getSource() == apagar) apagar();
+		if(e.getSource() == carregar)carregaDados();
 	}
 
 
